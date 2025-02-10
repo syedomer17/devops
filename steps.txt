@@ -78,3 +78,269 @@ app.listen(PORT, () => {
 6.cd server 
 7.open app.js and change all bulid folider to dist 
 8.npm start
+
+Top side for domain Name:
+
+1.NameCheap 
+2.hostinger
+3.goDaddy
+
+preferacble : .com .in .xyz . app (syedomer.xyz)
+
+Steps for Deployment WebApp / Websites 
+
+1.Make sure you have webapp or website is working good at local
+2.make a GitHub repo and push the code to GitHub without node_modules
+3.Changes in GitHub Repo
+- Add Description 
+- Add URL
+- Add Keywords
+- Add README.md 
+
+4. Purchase a domain from (compare which is less)
+- Namecheap
+- Hostinger
+- GoDaddy
+- BigRock 
+
+5. Purchase a Cloud Service from a Cloud Platform 
+
+- AWS
+- GCP
+- Azure
+- Digital Ocean
+
+
+
+6.Create a Account and Make payment setup in your Cloud Platform
+
+7.Open Digital Ocean 
+
+- Login in your Digital Ocean
+- Things which are important us are 
+- Droplets, Networking, Billing
+- Select Droplets ==> Create Droplets (Linux Based Virtual Cloud Server)
+- Select Region as Bangalore
+- Choose an Image as Ubuntu
+- Latest Version
+- Choose Size
+- Shared CPU ==> Basic ==> Intel Premium
+Select per/month 
+Example $16/mo
+- Choose Authentication Method 
+select password and create root password
+Example : omer2006Ali
+
+Select Check Mark : Add improved metrics monitoring and alerting (free)
+
+
+Quantity : 1
+Hostname : meraj or omer or ismail or muzzamil or Sneha
+
+- Then click on Create Droplet
+
+- It will create new droplet for us with a Public IP 
+
+- Note it down and remember it : 68.183.81.25
+
+
+8. Click on Droplets 
+- Select droplet and click on more
+- Select Access Console
+- Launch Droplet Console
+
+9. It will open tab based terminal
+
+10. Enter these command 
+sudo apt update && sudo apt upgrade
+
+- change omer to your username as: suhail,omer,sneha
+
+sudo adduser omer
+sudo chown omer:omer /home/somer
+nano /etc/sudoers
+Then add the user below admin user like below syntax.
+omer ALL=(ALL)  ALL
+usermod -a -G sudo omer
+su omer
+cd
+
+11. SSH Key Setup
+cd
+ssh-keygen -t ed25519 -C "syedomerali2006@gmail.com"
+Enter 4 Times 
+cd .ssh
+cat id_ed25519.pub
+copy the whole content of public and paste in
+GitHub ==> Settings ==> SSH & GPG Keys ==> New SSH Keys 
+
+Paste the key in Key Section and Save it 
+//In Terminal
+
+cd
+git config --global user.name "syedomer17"
+git config --global user.email "syedomerali2006@gmail.com"
+
+
+//To Verify : git config --list 
+
+// Clone Any Repo from your Profilr
+
+cd
+git clone ssh-url
+Enter : yes 
+
+
+
+12. Connect Cloud to Terminal Preview
+
+- Open WSL
+- cd .ssh
+- cat id_ed25519.pub
+- Copy the content of public key 
+
+
+// Windows
+- C:\Users\syeda\.ssh
+- If no .ssh
+- open cmd 
+- ssh-keygen -t ed25519 -C "syedomerali2006@gmail.com"
+- Enter 4 Times
+- cd .ssh
+- type id_ed25519.pub
+- Copy Public key and paste in authorized_keys of cloud
+
+// Cloud 
+
+- cd
+- cd .ssh
+- touch authorized_keys
+- nano  authorized_keys
+- paste the public key of wsl and Ctrl + O , Enter and Ctrl + X
+
+// Open Terminal Preview 
+- Click on Top DropDown 
+- Settings ==> Scroll Down ==> Add a new Profile 
+- Select Ubuntu and Click on Duplicate
+- Give Name as Cloud Sever 
+- ssh syedomer@68.183.81.25
+
+- Change the setting and click on save
+- Open Terminal dropdown and select Cloud Server
+- Enter Yes
+- You will cloud server 
+
+
+13. Default Packages 
+sudo apt install -y git
+sudo apt install -y net-tools
+sudo timedatectl set-timezone Asia/Kolkata
+sudo apt-get install -y nginx
+sudo apt install -y snapd
+sudo snap install core
+sudo apt-get install -y python3-certbot-nginx
+sudo snap install --classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/
+sudo apt install -y python3-pip
+sudo apt-get autoremove -y
+sudo apt full-upgrade -y
+sudo apt install -y gcc
+sudo apt install -y unzip
+sudo apt install -y build-essential
+sudo apt-get install -y manpages-dev
+
+
+14. Node JS Install
+1.Open Nodejs website 
+2. Click on Top Downloads (LTS ==> Linux ==> NVM ==> NPM )
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+Close and Reopen The Terminal
+
+nvm install 22
+node -v
+npm -v
+
+15.Project Clone & Nginx Setup
+1. Make sure your project is pushed in GitHub
+2. open cloud and type
+3 cd
+4. git clone ssh-url
+5. install npm i for server
+
+For Nodemon : npm i -g nodemon 
+
+
+16.Domain Add Using Script
+
+1. Essential DNS Records
+A (Address) Record → Maps a domain to an IPv4 address (e.g., example.com → 192.168.1.1).
+AAAA Record → Maps a domain to an IPv6 address.
+CNAME (Canonical Name) Record → Aliases one domain to another (e.g., www.example.com → example.com).
+NS (Name Server) Record → Specifies which name servers are authoritative for a domain.
+MX (Mail Exchange) Record → Directs email to the correct mail server.
+2. Other Useful DNS Records
+TXT (Text) Record → Stores arbitrary text, often used for verification (e.g., SPF, DKIM, DMARC).
+PTR (Pointer) Record → Reverse lookup: Maps an IP address back to a domain name.
+SOA (Start of Authority) Record → Contains admin info about the domain (e.g., primary name server, contact email).
+SRV (Service) Record → Specifies services like VoIP and messaging.
+CAA (Certification Authority Authorization) Record → Controls which certificate authorities can issue SSL certificates for a domain.
+
+--------------------------------------------------------------------------------
+
+1. Open Digital Ocean
+2. Open Networking
+3. Add Domains
+4. Add Your Domain
+5. Get your NS Records 
+-----------------
+Add 2 A Records of your domains
+www and @ ==> Cloud IP
+-----------------
+
+4) get your NS Records
+5) Take your cloud NS and Add it in Domain DNS Settings
+6) Check your NS Records get updated in dnschecker.org
+
+
+18. Nginx Setup
+0. sudo su 
+1. cd /etc/nginx/sites-enabled/
+2. sudo rm -rf *
+
+3. cd /etc/nginx/sites-available
+4. sudo touch domains
+
+5. sudo ln -s /etc/nginx/sites-available/domains /etc/nginx/sites-enabled
+
+---------
+5.1  Visit nginx.suhail.app
+5.2  add your domain with www 
+example :- syedomer.xyz www.syedomer.xyz
+and  add your port and click on get config
+5.3  copy the config and paste in
+5.4  sudo nano /etc/nginx/sites-available/domains
+5.5. paste it there and check it by
+5.6. sudo nginx -t
+5.7  sudo systemctl restart nginx
+
+
+----------------------------------
+19. Project Server Starting
+
+1. cd repoName
+2. cd server
+3. make sure you have nodemon and pm2 
+if not
+
+Command : npm i -g nodemon pm2 
+4. first check from npm start 
+if everything is working fine
+5. then type 
+Command : pm2 start app.js --name "App Name : PORT"
+
+Commands List
+pm2 restart all
+pm2 delete id
+pm2 restart id
+pm2 logs id 
+pm2 logs 
